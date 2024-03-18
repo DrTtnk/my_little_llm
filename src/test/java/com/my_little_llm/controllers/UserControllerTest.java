@@ -46,7 +46,6 @@ class UserControllerTest {
     final var currentUserId = user.getId();
 
     final var expectedUser = UserDto.builder()
-      .hashedPwd("test")
       .name("test")
       .id(currentUserId)
       .chats(new ArrayList<>())
@@ -67,12 +66,7 @@ class UserControllerTest {
       .getBody();
 
     assertEquals(
-      UserDto.builder()
-        .hashedPwd("test")
-        .name("test-rename")
-        .id(currentUserId)
-        .chats(new ArrayList<>())
-        .build(),
+      UserDto.builder().name("test-rename").id(currentUserId).chats(new ArrayList<>()).build(),
       updatedUser
     );
 

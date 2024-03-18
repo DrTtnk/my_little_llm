@@ -1,0 +1,176 @@
+{
+	"info": {
+		"_postman_id": "dea12c95-6c17-4724-84b3-df58de42f78a",
+		"name": "My Little LLM",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Make me coffee",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/make-me-coffee",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"make-me-coffee"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Mimmo\",\n    \"hashedPwd\": \"totally-a-hashed-pwd\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/users",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get user(s)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/users",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Start new chat",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/users/{{userId}}/chats?chatName=What a lovely chat&prompt=Le cose belle della vita",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"users",
+						"{{userId}}",
+						"chats"
+					],
+					"query": [
+						{
+							"key": "chatName",
+							"value": "What a lovely chat"
+						},
+						{
+							"key": "prompt",
+							"value": "Le cose belle della vita"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post message",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/chats/{{chatId}}/post-message?prompt=EVERYTHING!!!!",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"chats",
+						"{{chatId}}",
+						"post-message"
+					],
+					"query": [
+						{
+							"key": "prompt",
+							"value": "EVERYTHING!!!!"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get messages",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/chats/{{chatId}}",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"chats",
+						"{{chatId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "server",
+			"value": "http://127.0.0.1:2123",
+			"type": "default"
+		},
+		{
+			"key": "userId",
+			"value": "8a2660ae-53ce-4853-bcf5-75397337f989"
+		},
+		{
+			"key": "chatId",
+			"value": "380c386e-f2f9-4010-86a5-3e4038bb2e69"
+		}
+	]
+}

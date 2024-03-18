@@ -19,7 +19,7 @@ public class ChatController {
     this.chatMapper = chatMapper;
   }
 
-  @GetMapping("/chat/{id}")
+  @GetMapping("/chats/{id}")
   public ResponseEntity<ChatDto> getChat(@PathVariable String id) {
     return OPipe.of(id)
       .map(chatService::loadChat)
@@ -28,18 +28,18 @@ public class ChatController {
       .value;
   }
 
-  @DeleteMapping("/chat/{id}")
+  @DeleteMapping("/chats/{id}")
   public ResponseEntity<?> deleteChat(@PathVariable String id) {
     chatService.deleteChat(id);
     return new ResponseEntity<>(HttpStatus.NO_CONTENT);
   }
 
-  @PostMapping("/chat/{id}/post-message")
-  public ResponseEntity<String> postMessage(@PathVariable String id, @RequestBody String prompt) {
+  @PostMapping("/chats/{id}/post-message")
+  public ResponseEntity<String> postMessage(@PathVariable String id, @RequestParam String prompt) {
     return OPipe.of(chatService.getReply(id, prompt).getResponse()).map(ResponseEntity::ok).value;
   }
 
-  @DeleteMapping("/chat/{id}/message/{messageId}")
+  @DeleteMapping("/chats/{id}/message/{messageId}")
   public ResponseEntity<?> deleteMessage(@PathVariable String id, @PathVariable String messageId) {
     chatService.deleteMessage(messageId);
     return new ResponseEntity<>(HttpStatus.NO_CONTENT);

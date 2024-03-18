@@ -60,7 +60,7 @@ class ChatControllerTest {
     final var user = createUser();
 
     // CREATE
-    final var chat = userController.startNewChat(user, "test chat").getBody();
+    final var chat = userController.startNewChat(user, "test chat", "").getBody();
 
     final var currentChatId = chat.getId();
 
@@ -97,7 +97,7 @@ class ChatControllerTest {
 
     ReflectionTestUtils.setField(chatService, "restTemplate", restTemplateMock);
 
-    var chatId = userController.startNewChat(user, "test chat").getBody().getId();
+    var chatId = userController.startNewChat(user, "test chat", "").getBody().getId();
 
     var response = chatController.postMessage(chatId, "Hello").getBody();
 

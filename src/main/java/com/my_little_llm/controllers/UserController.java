@@ -36,7 +36,7 @@ public class UserController {
     this.chatMapper = chatMapper;
   }
 
-  @PostMapping("/user")
+  @PostMapping("/users")
   @ResponseStatus(HttpStatus.CREATED)
   public ResponseEntity<UserDto> createUser(@RequestBody InitUserDto user) {
     return OPipe.of(user)
@@ -46,7 +46,7 @@ public class UserController {
       .value;
   }
 
-  @GetMapping("/user")
+  @GetMapping("/users")
   public ResponseEntity<List<UserDto>> getUsers() {
     return OPipe.of(userService.getUsers())
       .map(Iterable::spliterator)
@@ -55,7 +55,7 @@ public class UserController {
       .value;
   }
 
-  @GetMapping("/user/{id}")
+  @GetMapping("/users/{id}")
   public ResponseEntity<UserDto> getUser(@PathVariable String id) {
     return OPipe.of(userService.getUser(id))
       .map(userMapper::mapTo)
@@ -72,24 +72,13 @@ public class UserController {
       .value;
   }
 
-  @PostMapping("/user/{userId}/startNewChat")
-  public ResponseEntity<ChatDto> startNewChat(
-    @PathVariable String userId,
-    @RequestBody String chatName
-  ) {
-    return OPipe.of(chatService.startNewChat(userId, chatName, ""))
-      .map(chatMapper::mapTo)
-      .map(ResponseEntity::ok)
-      .value;
-  }
-
-  @DeleteMapping("/user/{id}")
+  @DeleteMapping("/users/{id}")
   public ResponseEntity<?> deleteUser(@PathVariable String id) {
     userService.deleteUser(id);
     return new ResponseEntity<>(HttpStatus.NO_CONTENT);
   }
 
-  @GetMapping("/user/{userId}/chats")
+  @PostMapping("/users/{userId}/chats")
   public ResponseEntity<ChatDto> startNewChat(
     @PathVariable String userId,
     @RequestParam String chatName,

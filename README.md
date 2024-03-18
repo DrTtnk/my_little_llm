@@ -14,4 +14,11 @@ mvnw clean install
 
 # Start the docker containers
 docker compose up -d --wait
+
+# Start the server
+./mvnw spring-boot:run
+
+# Try it out
+curl --request GET -sL \
+     --url 'http://example.com'
 ```

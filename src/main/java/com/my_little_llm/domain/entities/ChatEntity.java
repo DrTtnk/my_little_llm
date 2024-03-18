@@ -24,7 +24,8 @@ public class ChatEntity {
 
   @OneToMany(mappedBy = "chat", cascade = CascadeType.ALL)
   @Fetch(FetchMode.JOIN)
-  private List<MessageEntity> messages;
+  @Builder.Default
+  private List<MessageEntity> messages = List.of();
 
   @ManyToOne(cascade = { CascadeType.MERGE })
   @JoinColumn(name = "user_id")
