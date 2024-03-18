@@ -1,0 +1,31 @@
+version: "3.7"
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: my_little_db
+    restart: no
+    ports:
+      - "5430:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U my_little_user"]
+    environment:
+      POSTGRES_USER: my_little_user
+      POSTGRES_PASSWORD: my_little_password
+      POSTGRES_DB: my_little_db
+
+  llama_cpp:
+    image: ghcr.io/ggerganov/llama.cpp:server
+    container_name: llama_cpp
+    restart: no
+    ports:
+      - "8000:8080"
+    command:
+      - "--model"
+      - "/models/myLittleModel.gguf"
+      - "--port"
+      - "8080"
+      - "--host"
+      - "0.0.0.0"
+    volumes:
+      - ./phi-2-super.Q8_0.gguf:/models/myLittleModel.gguf

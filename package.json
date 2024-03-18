@@ -1,0 +1,17 @@
+{
+  "name": "my_little_llm",
+  "version": "1.0.0",
+  "type": "commonjs",
+  "scripts": {
+    "lint": "prettier --write ./src/**/*.java",
+    "prepare": "husky"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "husky": "^9.0.11",
+    "prettier": "3.2.5",
+    "prettier-plugin-java": "^2.6.0"
+  }
+}
