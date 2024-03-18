@@ -8,7 +8,7 @@ A quick and dirty implementation of a chat frontend for the LlamaCPP server in S
 git clone https://github.com/DrTtnk/my_little_llm
 cd my_little_llm
 
-npm installcurl -O https://huggingface.co/sayhan/phi-2-super-GGUF/resolve/main/phi-2-super.Q8_0.gguf?download=true
+npm install
 
 mvnw clean install
 
