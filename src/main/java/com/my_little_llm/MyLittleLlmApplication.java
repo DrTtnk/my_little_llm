@@ -10,25 +10,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 @Log
 public class MyLittleLlmApplication {
 
-  private final DataSource dataSource;
-
-  public MyLittleLlmApplication(DataSource dataSource) {
-    this.dataSource = dataSource;
-    dbHealthCheck();
-  }
+  public MyLittleLlmApplication(DataSource dataSource) {}
 
   public static void main(String[] args) {
     SpringApplication.run(MyLittleLlmApplication.class, args);
-  }
-
-  private void dbHealthCheck() {
-    log.info("Our DataSource is = " + dataSource);
-    try (var connection = dataSource.getConnection()) {
-      final var template = new JdbcTemplate(dataSource);
-      template.execute("select 1;");
-      log.info("We have a connection to our DB");
-    } catch (Exception e) {
-      log.info("Our connection failed");
-    }
   }
 }
